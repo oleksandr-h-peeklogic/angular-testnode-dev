@@ -8,7 +8,6 @@ import 'brace';
 import 'brace/mode/sql';
 import 'brace/theme/dracula';
 var id = '';
-var url = '';
 var browsers = [
 	{
 		api_name: 'Nexus9-And60',
@@ -20804,10 +20803,16 @@ export class TestComponent {
   testRun;
   savedMessage = '';
   currentTestName = '';
+  url = '';
+  accKey = '';
+  sfUrl = '';
+
 
 	constructor(private route: ActivatedRoute, private location: Location, private testService: TestService) {
 		id = this.route.snapshot.paramMap.get('id');
-		url = this.route.snapshot.paramMap.get('url');
+		this.url = this.route.snapshot.paramMap.get('url');
+		this.accKey = this.route.snapshot.paramMap.get('accKey');
+		this.sfUrl = `https://${this.url}/secur/frontdoor.jsp?sid=${this.accKey}&retURL=lightning/page/home`;
 		browsers = browsers.filter((el) => el.device === 'desktop');
 		browsers.forEach((el) => {
 			this.OStypes.add(el.type);
