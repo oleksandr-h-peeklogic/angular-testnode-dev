@@ -20787,6 +20787,8 @@ var browsers = [
 		]
 })
 export class TestComponent {
+	editorOptions = {theme: 'vs-dark', language: 'javascript'};
+  	code: string= 'function x() {\nconsole.log("Hello world!");\n}';
 	saved = false;
 	testArr = [];
   currentTest;

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -18,7 +18,8 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     HttpModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    MonacoEditorModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
