@@ -124,6 +124,7 @@
             </div>
             <input type="text" class="form-control" (input)="fileNameChange($event.target.value)" [value]="currentTest.flosum_qa__File_Name__c">
           </div>
+          <ngx-monaco-editor style="min-height: 600px; width:98%; overflow: auto;" [options]="editorOptions" [(ngModel)]="text"></ngx-monaco-editor>
       <!-- <div ace-editor
       [(text)]="text"
       [mode]="'sql'" 
@@ -142,7 +143,7 @@
             </div>
             <input type="text" class="form-control" (input)="testNameChange($event.target.value)" [value]="currentTest.Name">
           </div>
-          <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+          <ngx-monaco-editor style="min-height: 600px; width:98%; overflow: auto;" [options]="editorOptions" [(ngModel)]="text2"></ngx-monaco-editor>
       <!-- <div ace-editor
       [(text)]="text2"
       [mode]="'sql'" 
