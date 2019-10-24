@@ -19,7 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpModule,
     AppRoutingModule,
     FormsModule,
-    MonacoEditorModule.forRoot()
+    MonacoEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
