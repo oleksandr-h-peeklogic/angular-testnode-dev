@@ -232,8 +232,13 @@ module.exports = {
 								}
 								
 								if(index === files.length - 1){
-									testResponces(collectResponces);
+									if(tempObj.testSuiteId === null || tempObj.testSuiteId === undefined){
+										console.log('just check test');
+									}else{
+										
+										testResponces(collectResponces);
 									resolve('FIN');
+									}
 								}else{
 									testFiles(files,index+1).then((responce) => {
 										resolve(responce);
