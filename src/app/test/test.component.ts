@@ -20924,8 +20924,12 @@ export class TestComponent {
 			queue: 1
 		});
 		let mapp = new Map();
-		mapp.set(id,testArr);		
-		this.testService.runTest([mapp]).then((responce) => {
+		mapp.set(id,testArr);	
+		console.log('mappmapp', mapp);
+		let testArr2 = [];
+		testArr2.push(mapp);	
+		console.log(testArr2);
+		this.testService.runTest(testArr2).then((responce) => {
 			this.testResponce = responce;
 		});
 	}
