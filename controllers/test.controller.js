@@ -249,6 +249,7 @@ module.exports = {
 				})
 			}
 		//	res.send('files');
+		res.sendStatus(200);
 
 	}
 };
