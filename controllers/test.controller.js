@@ -228,7 +228,7 @@ module.exports = {
 								if(tempObj.testSuiteId === null || tempObj.testSuiteId === undefined){
 									res.send(ewq);
 								}else{
-									res.sendStatus(200); 
+									
 									collectResponces.push(tempObj);
 								}
 								
@@ -236,7 +236,7 @@ module.exports = {
 									if(tempObj.testSuiteId === null || tempObj.testSuiteId === undefined){
 										console.log('just check test');
 									}else{
-										
+										res.sendStatus(200);  
 										testResponces(collectResponces);
 									resolve('FIN');
 									}
@@ -264,7 +264,7 @@ module.exports = {
 				})
 			}
 			if(!isLocalTest){
-			//	res.sendStatus(200); 
+				//res.sendStatus(200);  
 			}
 		//	
 		
