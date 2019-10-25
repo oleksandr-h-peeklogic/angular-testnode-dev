@@ -232,7 +232,7 @@ module.exports = {
 								if(tempObj.testSuiteId === null || tempObj.testSuiteId === undefined){
 									res.send(ewq);
 								}else{
-									
+									res.sendStatus(200); 
 									collectResponces.push(tempObj);
 								}
 								
