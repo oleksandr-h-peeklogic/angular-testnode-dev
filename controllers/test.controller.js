@@ -4,6 +4,7 @@ var status = require('http-status');
 
 const SF_USERNAME = 'ibegei@peeklogic.com.aqa';
 const SF_PASSWORD = 'Veryeasy4473';
+const os = require('os');
 const fs = require('fs-extra');
 var jsforce = require('jsforce');
 var conn = new jsforce.Connection({
