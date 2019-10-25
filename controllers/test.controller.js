@@ -254,3 +254,4 @@ module.exports = {
 
 	}
 };
+module.exports.runtests = this.runtests;
