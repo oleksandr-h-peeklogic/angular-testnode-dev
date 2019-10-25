@@ -185,6 +185,8 @@ module.exports = {
 		var receive = req.body;
 		receive.forEach(function(testObjSF,inn,arr){
 			console.log('testObjSF',testObjSF);
+			console.log('testObjSF',JSON.parse(testObjSF));
+			console.log('testObjSF',JSON.stringify(testObjSF));
 			 for(var mName in testObjSF){
 				 console.log('map key --> ',mName);
 				 for (let value of Object.values(testObjSF)) {
@@ -246,7 +248,7 @@ module.exports = {
 						})
 				})
 			}
-			res.send('files');
+		//	res.send('files');
 
 	}
 };
