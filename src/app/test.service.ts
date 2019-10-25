@@ -85,7 +85,7 @@ export class TestService {
 
     runTest(test : any[]){
       console.log('TEST RUN',test);
-      return this.http.post(this.testRunUrl,JSON.stringify(test)).
+      return this.http.post(this.testRunUrl,test).
         toPromise().
         then((respp) =>{
           console.log('RESPONCE',respp);
