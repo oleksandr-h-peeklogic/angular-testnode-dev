@@ -20929,7 +20929,7 @@ export class TestComponent {
 		let testArr2 = [];
 		testArr2.push(mapp);	
 		console.log(testArr2);
-		this.testService.runTest([{id:[{"fileName":this.currentTest.flosum_qa__File_Name__c,
+		this.testService.runTest([{id:[{"fileName":this.currentTest.flosum_qa__File_Name__c+'local-test-try',
 		"body":this.startTest + this.text + this.endTest,
 		"queue":1}]}]).then((responce) => {
 			this.testResponce = JSON.stringify(responce);

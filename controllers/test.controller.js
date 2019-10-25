@@ -205,12 +205,16 @@ module.exports = {
 		
 		});
 		var collectResponces = [];
+		var isLocalTest = new Boolean(false);
 			async function testFiles(files,index){
-			var isLocalTest = new Boolean(false);
+			
 				return new Promise((resolve,reject) => {
 				//	console.log('__dirname',__dirname);
 					//let FILENAME = os.tmpdir()+`/selenium/test/${files[index].fileName}`; 
 					let FILENAME = `/app/selenium/test/${files[index].fileName}`; 
+					if(FILENAME.includes('local-test-try')){
+						isLocalTest = true;
+					}
 				//	let FILENAME = `./selenium/test/TestNode.js`; 
 					console.log('FILENAME',FILENAME); 
 						let fileBody = files[index].body.split('<br>').join('\n').split('&#39;').join('\''); 
@@ -264,6 +268,7 @@ module.exports = {
 				})
 			}
 			if(!isLocalTest){
+				console.log('not LOCAL');
 				//res.sendStatus(200);  
 			}
 		//	
