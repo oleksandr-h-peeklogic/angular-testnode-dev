@@ -146,7 +146,7 @@ module.exports = {
 		});
 	},
 	runtests: async function(req, res) {
-		console.log('in runtest', req.body.length);
+		console.log('in runtest', JSON.parse(req.body).length);
 		function testResponces(responce){
 			var objects = [];
 			var i =0;
@@ -182,7 +182,7 @@ module.exports = {
 			}
 			}
 	
-		var receive = req.body;
+		var receive = JSON.parse(req.body);
 		receive.forEach(function(testObjSF,inn,arr){
 			console.log('testObjSF',testObjSF);
 			console.log('testObjSF',JSON.parse(testObjSF));
