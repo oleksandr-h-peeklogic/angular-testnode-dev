@@ -208,10 +208,10 @@ module.exports = {
 			async function testFiles(files,index){
 			
 				return new Promise((resolve,reject) => {
-					console.log('__dirname',__dirname);
+				//	console.log('__dirname',__dirname);
 					//let FILENAME = os.tmpdir()+`/selenium/test/${files[index].fileName}`; 
-					//let FILENAME = `./selenium/test/${files[index].fileName}`; 
-					let FILENAME = `./selenium/test/TestNode.js`; 
+					let FILENAME = `/app/selenium/test/${files[index].fileName}`; 
+				//	let FILENAME = `./selenium/test/TestNode.js`; 
 					console.log('FILENAME',FILENAME); 
 						let fileBody = files[index].body.split('<br>').join('\n').split('&#39;').join('\''); 
 						fs.outputFile(FILENAME,fileBody).then(() =>{ 
@@ -251,48 +251,8 @@ module.exports = {
 								console.error('CREATED FILE ERROR',er);
 
 
-								let FILENAME2 = `/app/selenium/test/TestNode.js`; 
-					console.log('FILENAME22',FILENAME2); 
-						let fileBody = files[index].body.split('<br>').join('\n').split('&#39;').join('\''); 
-						fs.outputFile(FILENAME2,fileBody).then(() =>{ 
-							delete require.cache[require.resolve(FILENAME2)]
-							test = require(FILENAME2);
-							test.example().then((ewq) => {
-								console.log('SUCCESS ewq');
-								var tempObj = new Object();
-								tempObj.testId = files[index].testId;
-								tempObj.testRunResId = files[index].testRunResId;
-								tempObj.testSuiteId = files[index].testSuiteId;
-								tempObj.result = ewq;
-								console.log('tempObj.testSuiteId ',tempObj.testSuiteId );
-								if(tempObj.testSuiteId == null || tempObj.testSuiteId == ''){
-									res.send(ewq);
-								}else{
-									collectResponces.push(tempObj);
-								}
-								
-								if(index === files.length - 1){
-									testResponces(collectResponces);
-									resolve('FIN');
-								}else{
-									testFiles(files,index+1).then((responce) => {
-										resolve(responce);
-									}).catch((err) => {
-										reject(err);
-									});
-								}
-							}).catch((rree) => {
-								if(rree){
-									console.error('ERROR rree',rree);
-								}
-							})
-						}).catch((er) => {
-							if(er){
-								console.error('CREATED FILE ERROR',er);
-							}
-						})
-
-
+								//let FILENAME2 = `/app/selenium/test/TestNode.js`; 
+		
 							}
 						})
 				})
