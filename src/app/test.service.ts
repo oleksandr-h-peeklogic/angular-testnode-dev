@@ -9,6 +9,7 @@ export class TestService {
   private testsUrl = '/api/tests';
   private testUrl = '/api/test';
   private testRunUrl = '/api/runtests';
+  private browsersUrl = 'https://crossbrowsertesting.com/api/v3/selenium/browsers';
   private testRun = '/api/testRun';
   
 
