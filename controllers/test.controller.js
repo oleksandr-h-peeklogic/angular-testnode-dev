@@ -206,7 +206,7 @@ module.exports = {
 		});
 		var collectResponces = [];
 			async function testFiles(files,index){
-			
+			var isLocalTest = new Boolean(false);
 				return new Promise((resolve,reject) => {
 				//	console.log('__dirname',__dirname);
 					//let FILENAME = os.tmpdir()+`/selenium/test/${files[index].fileName}`; 
@@ -228,6 +228,7 @@ module.exports = {
 								if(tempObj.testSuiteId === null || tempObj.testSuiteId === undefined){
 									res.send(ewq);
 								}else{
+									res.sendStatus(200); 
 									collectResponces.push(tempObj);
 								}
 								
@@ -262,7 +263,10 @@ module.exports = {
 						})
 				})
 			}
-		//	res.send('files');
+			if(!isLocalTest){
+			//	res.sendStatus(200); 
+			}
+		//	
 		
 
 	}
