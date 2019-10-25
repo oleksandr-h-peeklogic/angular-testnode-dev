@@ -146,7 +146,7 @@ module.exports = {
 		});
 	},
 	runtests: async function(req, res) {
-		console.log('in runtest', req.body);
+		console.log('in runtest', req.body.length);
 		function testResponces(responce){
 			var objects = [];
 			var i =0;
@@ -184,6 +184,7 @@ module.exports = {
 	
 		var receive = req.body;
 		receive.forEach(function(testObjSF,inn,arr){
+			console.log('testObjSF',testObjSF);
 			 for(var mName in testObjSF){
 				 console.log('map key --> ',mName);
 				 for (let value of Object.values(testObjSF)) {
