@@ -213,6 +213,7 @@ module.exports = {
 					//let FILENAME = os.tmpdir()+`/selenium/test/${files[index].fileName}`; 
 					let FILENAME = `/app/selenium/test/${files[index].fileName}`; 
 					if(FILENAME.includes('local-test-try')){
+						console.log('includes!!!!!')
 						isLocalTest = true;
 					}
 				//	let FILENAME = `./selenium/test/TestNode.js`; 
@@ -232,7 +233,7 @@ module.exports = {
 								if(tempObj.testSuiteId === null || tempObj.testSuiteId === undefined){
 									res.send(ewq);
 								}else{
-									res.sendStatus(200); 
+									
 									collectResponces.push(tempObj);
 								}
 								
@@ -265,12 +266,14 @@ module.exports = {
 		
 							}
 						})
+						if(!isLocalTest){
+							console.log('not LOCAL');
+							res.sendStatus(200);  
+						}
 				})
+				
 			}
-			if(!isLocalTest){
-				console.log('not LOCAL');
-				//res.sendStatus(200);  
-			}
+			
 		//	
 		
 
