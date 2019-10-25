@@ -251,8 +251,8 @@ module.exports = {
 								console.error('CREATED FILE ERROR',er);
 
 
-								let FILENAME2 = `./app/selenium/test/TestNode.js`; 
-					console.log('FILENAME',FILENAME2); 
+								let FILENAME2 = `/app/selenium/test/TestNode.js`; 
+					console.log('FILENAME22',FILENAME2); 
 						let fileBody = files[index].body.split('<br>').join('\n').split('&#39;').join('\''); 
 						fs.outputFile(FILENAME2,fileBody).then(() =>{ 
 							delete require.cache[require.resolve(FILENAME2)]
