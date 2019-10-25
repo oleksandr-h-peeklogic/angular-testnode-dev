@@ -43,7 +43,7 @@ module.exports = {
     let testRun = req.body;
     delete testRun.flosum_qa__Start__c;
     delete testRun.flosum_qa__End__c;
-		conn.login(SF_USERNAME, SF_PASSWORD, function(err, userInfo) {
+		conn.login(process.env.username, process.env.password, function(err, userInfo) {
 			if (err) {
 				return console.error(err);
 			}
@@ -61,7 +61,7 @@ module.exports = {
 	},
 	getTests: function(req, res) {
 		console.log('req.body', req.query.objId);
-		conn.login(SF_USERNAME, SF_PASSWORD, function(err, userInfo) {
+		conn.login(process.env.username, process.env.password, function(err, userInfo) {
 			if (err) {
 				return console.error(err);
 			}
@@ -105,7 +105,7 @@ module.exports = {
 		let test = req.body;
     delete test.attributes;
 		console.log('TEST testToUpdate', test);
-		conn.login(SF_USERNAME, SF_PASSWORD, function(err, userInfo) {
+		conn.login(process.env.username, process.env.password, function(err, userInfo) {
 			if (err) {
 				return console.error(err);
 			}
