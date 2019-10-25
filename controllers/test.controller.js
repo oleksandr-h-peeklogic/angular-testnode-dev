@@ -146,7 +146,8 @@ module.exports = {
 		});
 	},
 	runtests: async function(req, res) {
-		console.log('in runtest', JSON.parse(req.body).length);
+		console.log(req);
+		console.log('in runtest', req.body);
 		function testResponces(responce){
 			var objects = [];
 			var i =0;
