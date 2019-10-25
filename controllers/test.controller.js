@@ -225,7 +225,7 @@ module.exports = {
 								tempObj.testSuiteId = files[index].testSuiteId;
 								tempObj.result = ewq;
 								console.log('tempObj.testSuiteId ',tempObj.testSuiteId );
-								if(tempObj.testSuiteId == null || tempObj.testSuiteId == ''){
+								if(tempObj.testSuiteId === null || tempObj.testSuiteId === undefined){
 									res.send(ewq);
 								}else{
 									collectResponces.push(tempObj);
@@ -258,7 +258,7 @@ module.exports = {
 				})
 			}
 		//	res.send('files');
-		res.sendStatus(200);
+		
 
 	}
 };
