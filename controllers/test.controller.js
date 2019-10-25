@@ -8,7 +8,7 @@ const fs = require('fs-extra');
 var jsforce = require('jsforce');
 var conn = new jsforce.Connection({
 	// you can change loginUrl to connect to sandbox or prerelease env.
-	loginUrl: 'https://login.salesforce.com'
+	loginUrl: 'https://'+process.env.env+'.salesforce.com'
 });
 
 let crypto;
