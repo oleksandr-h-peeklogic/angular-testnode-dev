@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 var status = require('http-status');
 
-const SF_USERNAME = 'ibegei@peeklogic.com.aqa';
-const SF_PASSWORD = 'Veryeasy4473';
+
 const os = require('os');
 const fs = require('fs-extra');
 var jsforce = require('jsforce');
@@ -25,7 +24,7 @@ module.exports = {
 	},
 	getTestRun: function(req, res) {
 		console.log('req.body.TESTRUN', req.query.objId);
-		conn.login(SF_USERNAME, SF_PASSWORD, function(err, userInfo) {
+		conn.login(process.env.username, process.env.password, function(err, userInfo) {
 			if (err) {
 				return console.error(err);
 			}
@@ -82,7 +81,7 @@ module.exports = {
 	},
 	getTest: function(req, res) {
 		console.log('req.body', req.query.objId);
-		conn.login(SF_USERNAME, SF_PASSWORD, function(err, userInfo) {
+		conn.login(process.env.username, process.env.password, function(err, userInfo) {
 			if (err) {
 				return console.error(err);
 			}

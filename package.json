@@ -38,6 +38,7 @@
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.13",
     "ngx-monaco-editor": "^1.0.4",
+    "os": "^0.1.1",
     "request-promise-native": "^1.0.7",
     "rxjs": "^5.5.2",
     "selenium-webdriver": "^4.0.0-alpha.5",
