@@ -240,7 +240,7 @@ module.exports = {
 									if(tempObj.testSuiteId === null || tempObj.testSuiteId === undefined){
 										console.log('just check test');
 									}else{
-										res.sendStatus(200);  
+
 										testResponces(collectResponces);
 									resolve('FIN');
 									}
