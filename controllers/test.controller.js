@@ -215,7 +215,13 @@ module.exports = {
 								tempObj.testRunResId = files[index].testRunResId;
 								tempObj.testSuiteId = files[index].testSuiteId;
 								tempObj.result = ewq;
-								collectResponces.push(tempObj);
+								console.log('tempObj.testSuiteId ',tempObj.testSuiteId );
+								if(tempObj.testSuiteId == null || tempObj.testSuiteId == ''){
+									res.send(ewq);
+								}else{
+									collectResponces.push(tempObj);
+								}
+								
 								if(index === files.length - 1){
 									testResponces(collectResponces);
 									resolve('FIN');
