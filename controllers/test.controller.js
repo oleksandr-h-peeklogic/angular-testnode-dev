@@ -207,7 +207,8 @@ module.exports = {
 			async function testFiles(files,index){
 			
 				return new Promise((resolve,reject) => {
-					let FILENAME = `/selenium/test/${files[index].fileName}`; 
+					console.log(os.tmpdir());
+					let FILENAME = os.tmpdir()+`/selenium/test/${files[index].fileName}`; 
 					console.log('FILENAME',FILENAME); 
 						let fileBody = files[index].body.split('<br>').join('\n').split('&#39;').join('\''); 
 						fs.outputFile(FILENAME,fileBody).then(() =>{ 
