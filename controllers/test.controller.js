@@ -208,7 +208,7 @@ module.exports = {
 			async function testFiles(files,index){
 			
 				return new Promise((resolve,reject) => {
-					console.log(os.tmpdir());
+					console.log('__dirname',__dirname);
 					//let FILENAME = os.tmpdir()+`/selenium/test/${files[index].fileName}`; 
 					//let FILENAME = `./selenium/test/${files[index].fileName}`; 
 					let FILENAME = `./selenium/test/TestNode.js`; 
