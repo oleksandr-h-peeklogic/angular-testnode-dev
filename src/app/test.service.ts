@@ -17,6 +17,17 @@ export class TestService {
 
   }
 
+  
+  getBrowsers(){
+
+    return this.http.get(this.browsersUrl)
+    .toPromise()
+    .then(response => {
+      return response.json()
+    })
+    .catch(this.handleError);
+  }
+
     getTests(ID : string){
       console.log('TEST SERVICE',ID);
 
