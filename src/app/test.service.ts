@@ -89,7 +89,7 @@ export class TestService {
         toPromise().
         then((respp) =>{
           console.log('RESPONCE',respp);
-          return respp;
+          return respp.json();
         }).catch((err) => {
           console.error('ERROR',err);
         })

@@ -20932,7 +20932,7 @@ export class TestComponent {
 		this.testService.runTest([{id:[{"fileName":this.currentTest.flosum_qa__File_Name__c,
 		"body":this.startTest + this.text + this.endTest,
 		"queue":1}]}]).then((responce) => {
-			this.testResponce = responce;
+			this.testResponce = JSON.stringify(responce);
 		});
 	}
 
