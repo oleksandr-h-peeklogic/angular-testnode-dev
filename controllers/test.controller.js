@@ -146,62 +146,99 @@ module.exports = {
 		});
 	},
 	runtests: async function(req, res) {
-		var files = req.body;
-		console.log('FILES', files);
-		testFiles(files, 0)
-			.then((respp) => {
-				console.log('RES', respp);
-				res.send(200);
-			})
-			.catch((errr) => {
-				console.log('ERRRROOORRR', errr);
-				res.status(400);
+		function testResponces(responce){
+			var objects = [];
+			var i =0;
+			responce.forEach(function(resp){
+			console.log('resp.testId',resp.testId);
+			console.log('resp.result',resp.result.state);
+			var tempObject = new Object();
+				tempObject.flosum_qa__Test__c =resp.testId;
+				tempObject.flosum_qa__Selenium_Test_Run_Result__c =resp.testRunResId;
+				tempObject.flosum_qa__Selenium_Test_Suite__c=resp.testSuiteId;
+				tempObject.flosum_qa__TestInfo__c =JSON.stringify(resp.result);
+				tempObject.flosum_qa__Result_Public_URL__c =resp.result.show_result_public_url;
+				tempObject.flosum_qa__selenium_test_id__c =resp.result.selenium_test_id.toString();
+				tempObject.flosum_qa__State__c =resp.result.state;
+				objects.push(tempObject);
+				i++;
 			});
-
-		async function testFiles(files, index) {
-			return new Promise((resolve, reject) => {
-				let FILENAME = `../selenium/test/${files[index].fileName}`;
-				let fileBody = files[index].body;
-				fs
-					.outputFile(FILENAME, fileBody)
-					.then(() => {
-						console.log('SAVED');
-						try {
-							delete require.cache[require.resolve(FILENAME)];
-						} catch (e) {}
-						console.log('SAVED 1');
-						test = require(FILENAME);
-						console.log('SAVED 2');
-						test
-							.example()
-							.then((ewq) => {
-								console.log('SUCCESS ewq', ewq);
-								if (index === files.length - 1) {
-									resolve('DONE');
+			console.log('in object array ==> ', objects);
+			console.log(responce.length);
+			console.log(i);
+			if(responce.length == i){
+			conn.login(process.env.username, process.env.password, function(err, res) {
+				var accesTok = conn.accessToken;
+				conn.sobject("flosum_qa__Test_Result__c").create(objects,
+				function(err, rets) {
+					if (err) { return console.error(err); }else{
+						console.log('pushed, check SF');
+					}
+				
+				});
+				
+			});
+			}
+			}
+	
+		var receive = req.body;
+		receive.forEach(function(testObjSF,inn,arr){
+			 for(var mName in testObjSF){
+				 console.log('map key --> ',mName);
+				 for (let value of Object.values(testObjSF)) {
+					console.log('===========================================================================');   
+			 var files = value;    //go error;
+			 console.log('FILES',files);
+		 testFiles(files,0).then((respp) => {  
+			 console.log('RES', respp);
+		 }).catch((errr) => {
+			 console.log('ERRRROOORRR',errr);
+		 }) 
+		
+		 }
+		 }
+		
+		});
+		var collectResponces = [];
+			async function testFiles(files,index){
+				return new Promise((resolve,reject) => {
+					let FILENAME = `./selenium/test/${files[index].fileName}`; 
+					console.log('FILENAME',FILENAME);
+						let fileBody = files[index].body.split('<br>').join('\n').split('&#39;').join('\''); 
+						fs.outputFile(FILENAME,fileBody).then(() =>{ return fs.readFile(FILENAME,'utf8') }).then((data) => {
+							delete require.cache[require.resolve(FILENAME)]
+							test = require(FILENAME);
+							test.example().then((ewq) => {
+								console.log('SUCCESS ewq');
+								var tempObj = new Object();
+								tempObj.testId = files[index].testId;
+								tempObj.testRunResId = files[index].testRunResId;
+								tempObj.testSuiteId = files[index].testSuiteId;
+								tempObj.result = ewq;
+								collectResponces.push(tempObj);
+								if(index === files.length - 1){
+									testResponces(collectResponces);
+									resolve('FIN');
+								}else{
+									testFiles(files,index+1).then((responce) => {
+										resolve(responce);
+									}).catch((err) => {
+										reject(err);
+									});
 								}
-								else {
-									testFiles(files, index + 1)
-										.then((responce) => {
-											resolve(responce);
-										})
-										.catch((err) => {
-											reject(err);
-										});
+							}).catch((rree) => {
+								if(rree){
+									console.error('ERROR rree',rree);
 								}
 							})
-							.catch((rree) => {
-								if (rree) {
-									console.error('ERROR rree', rree);
-								}
-							});
-					})
-					.catch((er) => {
-						if (er) {
-							console.error('CREATED FILE ERROR', er);
-						}
-					});
-			});
-			//let FILENAME = './selenium/test/myfirsttest1.js';
-		}
+						}).catch((er) => {
+							if(er){
+								console.error('CREATED FILE ERROR',er);
+							}
+						})
+				})
+			}
+			res.send('files');
+
 	}
 };

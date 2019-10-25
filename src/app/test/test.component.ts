@@ -20806,6 +20806,7 @@ export class TestComponent {
   url = '';
   accKey = '';
   sfUrl = '';
+  testResponce = '';
 
 
 	constructor(private route: ActivatedRoute, private location: Location, private testService: TestService) {
@@ -20920,7 +20921,11 @@ export class TestComponent {
 			body: this.startTest + this.text + this.endTest,
 			queue: 1
 		});
-		this.testService.runTest(testArr);
+		let mapp = new Map();
+		mapp.set(id,testArr);		
+		this.testService.runTest([mapp]).then((responce) => {
+			this.testResponce = responce;
+		});
 	}
 
 	findOSVersions(val) {
