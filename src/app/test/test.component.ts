@@ -20916,6 +20916,8 @@ export class TestComponent {
 
 	runTest() {
 		let testArr = [];
+		this.startTest = this.startTest.split('*testOrganization*').join(this.sfUrl);
+		this.startTest = this.startTest.split('*testUnitName*').join(this.currentTest.Name);
 		testArr.push({
 			fileName: this.currentTest.flosum_qa__File_Name__c,
 			body: this.startTest + this.text + this.endTest,
