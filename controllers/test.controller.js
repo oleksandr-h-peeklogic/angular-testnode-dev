@@ -146,6 +146,7 @@ module.exports = {
 		});
 	},
 	runtests: async function(req, res) {
+		console.log('in runtest', req.body);
 		function testResponces(responce){
 			var objects = [];
 			var i =0;
