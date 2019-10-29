@@ -8,7 +8,7 @@ const fs = require('fs-extra');
 var jsforce = require('jsforce');
 var conn = new jsforce.Connection({
 	// you can change loginUrl to connect to sandbox or prerelease env.
-	loginUrl: 'https://login.salesforce.com'
+	loginUrl: 'https://'+process.env.env+'.salesforce.com'
 });
 
 let crypto;
@@ -205,13 +205,18 @@ module.exports = {
 		
 		});
 		var collectResponces = [];
+		var isLocalTest = new Boolean(false);
 			async function testFiles(files,index){
 			
 				return new Promise((resolve,reject) => {
-					console.log(os.tmpdir());
+				//	console.log('__dirname',__dirname);
 					//let FILENAME = os.tmpdir()+`/selenium/test/${files[index].fileName}`; 
-					//let FILENAME = `./selenium/test/${files[index].fileName}`; 
 					let FILENAME = `/app/selenium/test/${files[index].fileName}`; 
+					if(FILENAME.includes('local-test-try')){
+						console.log('includes!!!!!')
+						isLocalTest = true;
+					}
+				//	let FILENAME = `./selenium/test/TestNode.js`; 
 					console.log('FILENAME',FILENAME); 
 						let fileBody = files[index].body.split('<br>').join('\n').split('&#39;').join('\''); 
 						fs.outputFile(FILENAME,fileBody).then(() =>{ 
@@ -225,15 +230,21 @@ module.exports = {
 								tempObj.testSuiteId = files[index].testSuiteId;
 								tempObj.result = ewq;
 								console.log('tempObj.testSuiteId ',tempObj.testSuiteId );
-								if(tempObj.testSuiteId == null || tempObj.testSuiteId == ''){
+								if(tempObj.testSuiteId === null || tempObj.testSuiteId === undefined){
 									res.send(ewq);
 								}else{
+									
 									collectResponces.push(tempObj);
 								}
 								
 								if(index === files.length - 1){
-									testResponces(collectResponces);
+									if(tempObj.testSuiteId === null || tempObj.testSuiteId === undefined){
+										console.log('just check test');
+									}else{
+
+										testResponces(collectResponces);
 									resolve('FIN');
+									}
 								}else{
 									testFiles(files,index+1).then((responce) => {
 										resolve(responce);
@@ -249,12 +260,22 @@ module.exports = {
 						}).catch((er) => {
 							if(er){
 								console.error('CREATED FILE ERROR',er);
+
+
+								//let FILENAME2 = `/app/selenium/test/TestNode.js`; 
+		
 							}
 						})
+						if(!isLocalTest){
+							console.log('not LOCAL');
+							res.sendStatus(200);  
+						}
 				})
+				
 			}
-		//	res.send('files');
-		res.sendStatus(200);
+			
+		//	
+		
 
 	}
 };
