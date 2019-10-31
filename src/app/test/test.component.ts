@@ -20788,7 +20788,7 @@ var browsers = [
 })
 export class TestComponent {
 	editorOptions = {theme: 'vs-dark', language: 'javascript'};
-  	code: string= 'function x() {\nconsole.log("Hello world!");\n}';
+  	code: string= '';
 	saved = false;
 	testArr = [];
   currentTest;
@@ -20965,7 +20965,7 @@ export class TestComponent {
         console.log('this.OS',this.OS);
         this.findOSVersions(this.OS);
         console.log('this.OSversions',this.OSversions);
-          this.OSVersion = this.OSversions.find((el) => el.version === this.testRun.flosum_qa__Platform__c);
+          this.OSVersion = this.OSversions.find((el) => el.caps.platform === this.testRun.flosum_qa__Platform__c);
           console.log('this.OSVersion',this.OSVersion);
           if(this.OSVersion != undefined){
             this.browser = this.OSVersion.browsers.find((el) => el.caps.browserName === this.testRun.flosum_qa__Browser_Name__c && el.caps.version === this.testRun.flosum_qa__Version__c);
