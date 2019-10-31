@@ -20856,7 +20856,8 @@ export class TestComponent {
 	}
 
 	saveTest() {
-    this.currentTest.flosum_qa__selenium_webdriver_JS__c =this.text;
+	this.currentTest.flosum_qa__selenium_webdriver_JS__c =this.text;
+	this.currentTest.flosum_qa__isActive__c = true;
     let testObj = {
       "test":this.currentTest,
       "testRunId": id
