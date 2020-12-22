@@ -1,9 +1,7 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 const rp = require('request-promise-native');
-let username = 'oleksandr.h@peeklogic.com';
-let authkey = 'u62688b2f5045123';
-//let username = 'bdosiak@peeklogic.com';
-//let authkey = 'ud54b6c654941325';
+let username = 'bdosiak@peeklogic.com';
+let authkey = 'ud54b6c654941325';
 let auth = { username: username, password: authkey };
 let hubUrl = 'https://' + username + ':' + authkey + '@hub.crossbrowsertesting.com:443/wd/hub';
 let apiUrl = 'https://crossbrowsertesting.com/api/v3/selenium/';
